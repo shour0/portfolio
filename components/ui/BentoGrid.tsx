@@ -92,7 +92,7 @@ export const BentoGridItem = ({
 
         {id === 6 && (
           <BackgroundGradientAnimation>
-            <div className="absolute z-50 flex items-center justify-center text-white font-bold" />
+          
           </BackgroundGradientAnimation>
         )}
 
@@ -111,7 +111,7 @@ export const BentoGridItem = ({
           {id === 2 && <GlobeDemo />}
 
           {id === 3 && (
-            <div className="flex gap-1 lg:gap-5 w-fit absolute -right-1 lg:-bottom-24 ">
+            <div className="flex gap-1 lg:gap-5 w-fit absolute -right-1 ">
               <div className="flex flex-col gap-3 lg:gap-8">
                 {['React.js', 'Next.js', 'Typescript'].map((item) => (
                   <span key={item} className="py-2 lg:py-4 lg:px-3 text-xs lg:text-base opacity-50 lg:opacity-100 rounded-lg text-center bg-[#10132E]">{item}</span>
