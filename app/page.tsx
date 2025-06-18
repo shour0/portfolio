@@ -1,9 +1,14 @@
+import Approach from "@/components/Approach";
+import Clients from "@/components/Clients";
+import Experience from "@/components/Experience";
+import Footer from "@/components/Footer";
 import Grid from "@/components/Grid";
 import Hero from "@/components/Hero";
+import Journey from "@/components/Journey";
 import RecentProject from "@/components/RecentProject";
 import { FloatingNav } from "@/components/ui/FloatingNav";
 import { navItems } from "@/data";
-import { FaHome } from "react-icons/fa";
+
 
 export default function Home() {
   return (
@@ -11,11 +16,14 @@ export default function Home() {
       
       <div className="max-w-[120rem] w-full">
         <FloatingNav navItems={navItems}/> 
-        <Hero 
-        />
-        
+        <Hero />
         <Grid />
         <RecentProject />
+        <Clients />
+        <Experience />
+        <Approach />
+        <Journey />
+        <Footer />
       </div>
     </main>
   );
