@@ -16,7 +16,6 @@ export const BentoGrid = ({
   className?: string;
   children?: React.ReactNode;
 }) => {
-  const [copied, setCopied] = useState(false)
   return (
     <div
       className={cn(
