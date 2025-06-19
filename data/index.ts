@@ -79,7 +79,7 @@ export const projects = [
     des: "delivers up-to-date space data with dynamic animations and content powered by Sanity CMS. Built using React, Next.js, GSAP, and Acternnity, it offers a smooth, real-time experience across devices.",
     img: "",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/fm.svg", "/gsap.svg"],
-    link: "Upcomming Still in Development",
+    link: "Upcoming",
   },
   {
     id: 2,
