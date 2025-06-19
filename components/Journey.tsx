@@ -1,32 +1,54 @@
 import React from "react";
 import { Timeline } from "@/components/ui/Timeline";
+import { LinkPreview } from "./ui/Linkpreview";
 
 const Journey = () => {
   const data = [
     {
-      title: "2024",
+      title: "Early 2025",
       content: (
         <div>
           <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            Built and launched Aceternity UI and Aceternity UI Pro from scratch
+            Built modern, responsive web applications using{" "}
+            <span>
+              <LinkPreview url="https://react.dev/" className="font-bold">React,</LinkPreview>
+            </span>{" "}
+            <span>
+              <LinkPreview url="https://nextjs.org/" className="font-bold">Next.js,</LinkPreview>
+            </span>{" "}
+            <span>
+              <LinkPreview url="https://tailwindcss.com" className="font-bold">Tailwind CSS,</LinkPreview>
+            </span>{" "}
+            <span>
+              <LinkPreview url="https://gsap.com/" className="font-bold">GSAP animations,</LinkPreview>
+            </span>{" "}
+            and a robust{" "}
+            <span>
+              <LinkPreview url="https://nodejs.org/en/" className="font-bold">Node.js</LinkPreview>
+            </span>{" "}
+            +{" "}
+            <span>
+              <LinkPreview url="https://www.mongodb.com/" className="font-bold">MongoDB backend.</LinkPreview>
+            </span>
           </p>
+
+
           <div className="grid grid-cols-2 gap-4">
             <img
-              src="https://assets.aceternity.com/templates/startup-1.webp"
+              src="liveDocument.png"
               alt="startup template"
               width={500}
               height={500}
               className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
             />
             <img
-              src="https://assets.aceternity.com/templates/startup-2.webp"
-              alt="startup template"
+              src="iPhone3d.png"
               width={500}
               height={500}
               className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
             />
             <img
-              src="https://assets.aceternity.com/templates/startup-3.webp"
+              src="iPhoneVid.png"
               alt="startup template"
               width={500}
               height={500}
@@ -44,41 +66,54 @@ const Journey = () => {
       ),
     },
     {
-      title: "Early 2023",
+      title: "Early 2024",
       content: (
         <div>
           <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            I usually run out of copy, but when I see content this big, I try to
-            integrate lorem ipsum.
+            I kicked things off with{" "}
+            <span>
+              <LinkPreview url="http://www.w3schools.com/js/" className="font-bold">JavaScript,</LinkPreview>
+            </span>{" "}
+            <span>
+              <LinkPreview url="https://www.w3schools.com/html/" className="font-bold">HTML</LinkPreview>
+            </span>
+            , and{" "}
+            <span>
+              <LinkPreview url="https://www.w3schools.com/css/" className="font-bold">CSS.</LinkPreview>
+            </span>{" "}
           </p>
+
           <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            Lorem ipsum is for people who are too lazy to write copy. But we are
-            not. Here are some more example of beautiful designs I built.
+            then dove into{" "}
+            <span>
+              <LinkPreview url="https://react.dev/" className="font-bold">React</LinkPreview>
+            </span>{" "}
+            and started to build real projects — something completely new to me but incredibly fun to learn!
           </p>
           <div className="grid grid-cols-2 gap-4">
             <img
-              src="https://assets.aceternity.com/pro/hero-sections.png"
+              src="quoteGenerator.png"
               alt="hero template"
               width={500}
               height={500}
               className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
             />
             <img
-              src="https://assets.aceternity.com/features-section.png"
+              src="adoptMe.png"
               alt="feature template"
               width={500}
               height={500}
               className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
             />
             <img
-              src="https://assets.aceternity.com/pro/bento-grids.png"
+              src="amazon.png"
               alt="bento template"
               width={500}
               height={500}
               className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
             />
             <img
-              src="https://assets.aceternity.com/cards.png"
+              src="quoteGeneratorHIW.png"
               alt="cards template"
               width={500}
               height={500}
@@ -93,35 +128,35 @@ const Journey = () => {
       content: (
         <div>
           <p className="mb-4 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            Deployed 5 new components on Aceternity today
+           ✅ Integrated Aceternity for performance monitoring.
           </p>
           <div className="mb-8">
             <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm dark:text-neutral-300">
-              ✅ Card grid component
+              ✅ Built modern portofolio with React, Next.js, and Tailwind CSS.
             </div>
             <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm dark:text-neutral-300">
-              ✅ Startup template Aceternity
+              ✅ Used GSAP for smooth animations.
             </div>
             <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm dark:text-neutral-300">
-              ✅ Random file upload lol
+              ✅ Created full-stack solutions with Node.js and MongoDB.
             </div>
             <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm dark:text-neutral-300">
-              ✅ Himesh Reshammiya Music CD
+              ✅ Applied responsive design best practices.
             </div>
             <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm dark:text-neutral-300">
-              ✅ Salman Bhai Fan Club registrations open
+              ✅ Used Shadn components for faster UI development.
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
             <img
-              src="https://assets.aceternity.com/pro/hero-sections.png"
+              src="aceternity.png"
               alt="hero template"
               width={500}
               height={500}
               className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
             />
             <img
-              src="https://assets.aceternity.com/features-section.png"
+              src="shadcn.png"
               alt="feature template"
               width={500}
               height={500}

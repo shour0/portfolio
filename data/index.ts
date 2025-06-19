@@ -1,3 +1,5 @@
+import { link } from "fs";
+
 export const navItems = [
   { name: "About", link: "#about" },
   { name: "Projects", link: "#projects" },
@@ -49,7 +51,7 @@ export const gridItems = [
 
   {
     id: 5,
-    title: "Currently building a JS Animation library",
+    title: "Currently building a real time Nasa information app",
     description: "The Inside Scoop",
     className: "md:col-span-3 md:row-span-2",
     imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
@@ -76,32 +78,32 @@ export const projects = [
     title: "Nasa information - Real Time",
     des: "delivers up-to-date space data with dynamic animations and content powered by Sanity CMS. Built using React, Next.js, GSAP, and Acternnity, it offers a smooth, real-time experience across devices.",
     img: "",
-    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/fm.svg"],
-    link: "",
+    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/fm.svg", "/gsap.svg"],
+    link: "Upcomming Still in Development",
   },
   {
     id: 2,
     title: "LinkClient Copy",
     des: "Developed Navbar, Hero, and Highlights sections using React and Tailwind CSS, focusing on responsive design and clean component structure. Integrated these parts into the linkedClient website — a project copy I created based on the original linkClient site.",
-    img: "",
-    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
-    link: "",
+    img: "linkclient.png",
+    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
+    link: "https://linkclientcopy.vercel.app/",
   },
   {
     id: 3,
     title: "YC Startup Directory with Sanity & GSAP",
     des: "An animated YC startup directory powered by Sanity CMS and GSAP for a smooth, dynamic browsing experience.",
-    img: "",
-    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/c.svg"],
-    link: "",
+    img: "ycDirectory.png",
+    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/gsap.svg", "/fm.svg"],
+    link: "https://ycdirectory-iota.vercel.app/",
   },
   {
     id: 4,
     title: "Animated Apple Iphone 3D Website",
     des: "Recreated the Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects..",
-    img: "",
-    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
-    link: "",
+    img: "iPhone.png",
+    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
+    link: "https://i-phone-copy-slop.vercel.app/",
   },
 ];
 
@@ -174,14 +176,16 @@ export const socialMedia = [
   {
     id: 1,
     img: "/git.svg",
+    link: "https://github.com/shour0"
   },
   {
     id: 2,
-    img: "/twit.svg",
+    img: "/insta.svg",
+    link: 'https://www.instagram.com/shour191/'
   },
   {
     id: 3,
-    img: "/link.svg",
+    img: "/wha.svg",
   },
 ];
 
