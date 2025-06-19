@@ -11,7 +11,7 @@ const Approach = () => {
        My <span className="text-purple">approach</span>
       </h1>
       <div className="my-20 flex flex-col lg:flex-row items-center justify-center w-full gap-10">
-        <Card title="Planning & Strategy" order="Phase 1" icon={<AceternityIcon/>}
+        <Card title="Planning & Strategy" icon={<AceternityIcon order="Phase 1" />}
         description="In the planning phase, I prioritize understanding user needs and defining clear frontend goals. This involves selecting the right UI frameworks (like React or Next.js), establishing a scalable component architecture, and aligning design systems with development tools. I focus on creating a roadmap that balances user experience, performance, and maintainability from the outset.
 
 "
@@ -21,7 +21,7 @@ const Approach = () => {
             containerClassName="bg-emerald-900"
           />
         </Card>
-        <Card title="Development & Progress Update" order="Phase 2" icon={<AceternityIcon />}
+        <Card title="Development & Progress Update" icon={<AceternityIcon order="Phase 2" />}
         description="During development, I follow an iterative process—building responsive, accessible, and modular components with clean, maintainable code. Regular progress updates ensure alignment with stakeholders, allowing for feedback-driven improvements. I leverage tools like Github."
         >
           <CanvasRevealEffect
@@ -35,7 +35,7 @@ const Approach = () => {
           />
 
         </Card>
-        <Card title="Development & Launch" order="Phase 3"  icon={<AceternityIcon  />}
+        <Card title="Development & Launch" icon={<AceternityIcon order="Phase 3" />}
         description="As launch approaches, I conduct thorough testing—unit, integration, and end-to-end—to ensure a smooth user experience across devices and browsers. I optimize assets, manage bundle size, and implement performance best practices. Deployment is handled through modern platforms like Vercel, ensuring rapid, reliable delivery of the frontend application."
         >
           <CanvasRevealEffect
@@ -53,14 +53,12 @@ const Card = ({
   title,
   icon,
   children,
-  description,
-  order
+  description
 }: {
   title: string;
   icon: React.ReactNode;
   children?: React.ReactNode;
   description: string;
-  order: string
 }) => {
   const [hovered, setHovered] = React.useState(false);
   return (
@@ -101,10 +99,10 @@ const Card = ({
   );
 };
 
-const AceternityIcon = ({order}: {order: any}) => {
+const AceternityIcon: React.FC<{ order: string }> = ({ order }) => {
   return (
    <div>
-    <button className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offsset-2 focus:ring-offset-slate-50">
+    <button className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
       <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
       <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-3 py-1 text-xl font-medium text-white backdrop-blur-3xl">
        {order}
