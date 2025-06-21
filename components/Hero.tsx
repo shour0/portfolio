@@ -7,7 +7,7 @@ import { SparklesCore } from './ui/Sparkles'
 
 const Hero = () => {
   return (
-    <div className='pb-20 pt-28 '>
+    <div className='pb-20 lg:pt-36 sm:pt-0 '>
       
       <div>
         <Spotlight className='-top-40 -left-10 md:-left-32 md:-top-20 h-screen' fill='white' />
