@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'http://localhost:3000'),
   alternates: {
     canonical: '/',
   },
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     siteName: "Charbel's Portfolio",
     images: [
       {
-        url: '/og-image.png',
+        url: `${process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'http://localhost:3000'}/og-image.png`,
         width: 1200,
         height: 630,
         alt: "Charbel's Portfolio - Full Stack Developer",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Charbel's Portfolio - Full Stack Developer",
     description: "Full Stack Developer specializing in React, Next.js, and modern web technologies. Explore my projects, skills, and experience.",
-    images: ['/og-image.png'],
+    images: [`${process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'http://localhost:3000'}/og-image.png`],
     creator: '@Charbel936',
   },
   robots: {
