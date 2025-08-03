@@ -1,7 +1,7 @@
 "use client";
 
 import { FaLocationArrow } from "react-icons/fa6";
-
+import Image from "next/image";
 import { projects } from "@/data";
 import { PinContainer } from "./ui/3d-pin";
 
@@ -27,13 +27,26 @@ const RecentProjects = () => {
                   className="relative w-full h-full overflow-hidden lg:rounded-3xl"
                   style={{ backgroundColor: "#13162D" }}
                 >
-                  <img className="z-20"  src="/bg.png" alt="bgimg" />
+                  <Image
+                    className="z-20"
+                    src="/bg.png"
+                    alt="bgimg"
+                    fill
+                    sizes="(max-width: 768px) 80vw, 384px"
+                    priority={false}
+                  />
                 </div>
-                {item.img && (<img
-                  src={item.img}
-                  alt="cover"
-                  className="z-10 absolute bottom-0"
-                /> )}
+                {item.img && (
+                  <Image
+                    src={`/${item.img}`}
+                    alt="cover"
+                    className="z-10 absolute bottom-0"
+                    width={384}
+                    height={200}
+                    sizes="(max-width: 768px) 80vw, 384px"
+                    priority={false}
+                  />
+                )}
               </div>
 
               <h1 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1">
@@ -60,7 +73,14 @@ const RecentProjects = () => {
                         transform: `translateX(-${5 * index + 2}px)`,
                       }}
                     >
-                      <img src={icon} alt="icon5" className="p-2" />
+                      <Image
+                        src={icon}
+                        alt={`tech-${index}`}
+                        className="p-2"
+                        width={24}
+                        height={24}
+                        priority={false}
+                      />
                     </div>
                   ))}
                 </div>

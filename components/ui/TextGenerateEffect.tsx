@@ -13,18 +13,21 @@ export const TextGenerateEffect = ({
   const [scope, animate] = useAnimate();
   const wordsArray = words.split(" ");
   useEffect(() => {
-    console.log(wordsArray);
-    animate(
-      "span",
-      {
-        opacity: 1,
-      },
-      {
-        duration: 2,
-        delay: stagger(0.2),
-      }
-    );
-  }, [scope.current]);
+    const timer = setTimeout(() => {
+      animate(
+        "span",
+        {
+          opacity: 1,
+        },
+        {
+          duration: 1.5,
+          delay: stagger(0.1),
+        }
+      );
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [animate]);
 
   const renderWords = () => {
     return (
