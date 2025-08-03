@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     siteName: "Charbel's Portfolio",
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'http://localhost:3000'}/og-image.png`,
+        url: '/og-image.png',
         width: 1026,
         height: 1200,
         alt: "Charbel's Portfolio - Full Stack Developer",
@@ -48,23 +48,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Charbel's Portfolio - Full Stack Developer",
     description: "Full Stack Developer specializing in React, Next.js, and modern web technologies. Explore my projects, skills, and experience.",
-    images: [`${process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'http://localhost:3000'}/og-image.png`],
+    images: ['/og-image.png'],
     creator: '@Charbel936',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  verification: {
-    google: 'Xj9i7eROWn758MpIe4lkwmrlqiexpevYBDOyT_1YCvg',
-  },
+  }
 };
 
 export const viewport = {
