@@ -38,8 +38,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: `${process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'http://localhost:3000'}/og-image.png`,
-        width: 1200,
-        height: 630,
+        width: 1026,
+        height: 1200,
         alt: "Charbel's Portfolio - Full Stack Developer",
       },
     ],
