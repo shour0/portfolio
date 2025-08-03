@@ -51,7 +51,7 @@ export const gridItems = [
 
   {
     id: 5,
-    title: "Currently building a real time Nasa information app",
+    title: "Currently building a Finance Tracker App",
     description: "The Inside Scoop",
     className: "md:col-span-3 md:row-span-2",
     imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
@@ -75,11 +75,11 @@ export const gridItems = [
 export const projects = [
   {
     id: 1,
-    title: "Nasa information - Real Time",
-    des: "delivers up-to-date space data with dynamic animations and content powered by Sanity CMS. Built using React, Next.js, GSAP, and Acternnity, it offers a smooth, real-time experience across devices.",
-    img: "",
+    title: "Capital View - Finance Tracker",
+    des: "A responsive finance tracking app built with Next.js, featuring Firebase Auth and Firestore for secure user access and data management. It includes Framer Motion animations, a resizable navbar, a finance trend visualization, and an income vs. expense pie chart powered by a custom transaction API. The homepage has resizable cards and a custom logo. Performance is optimized with Unlighthouse. Project in progress.",
+    img: "capital.png",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/fm.svg", "/gsap.svg"],
-    link: "Upcoming",
+    link: "https://capitalview.vercel.app/",
   },
   {
     id: 2,
