@@ -1,0 +1,22 @@
+{
+  "name": "Charbel's Portfolio - Full Stack Developer",
+  "short_name": "Charbel's Portfolio",
+  "description": "Full Stack Developer specializing in React, Next.js, and modern web technologies",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

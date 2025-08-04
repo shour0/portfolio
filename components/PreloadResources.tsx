@@ -3,12 +3,19 @@ import { useEffect } from 'react';
 
 const PreloadResources = () => {
   useEffect(() => {
-    // Preload critical images with priority
+    // Use requestIdleCallback for non-critical preloading
+    const preloadWhenIdle = (callback: () => void) => {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(callback);
+      } else {
+        setTimeout(callback, 1);
+      }
+    };
+
+    // Preload only critical images immediately
     const criticalImages = [
       { src: '/b1.svg', priority: 'high' },
       { src: '/grid.svg', priority: 'high' },
-      { src: '/b4.svg', priority: 'low' },
-      { src: '/b5.svg', priority: 'low' },
     ];
 
     criticalImages.forEach(({ src, priority }) => {
@@ -16,35 +23,55 @@ const PreloadResources = () => {
       link.rel = 'preload';
       link.as = 'image';
       link.href = src;
-      if (priority === 'high') {
-        link.fetchPriority = 'high';
-      }
+      link.fetchPriority = priority as any;
       document.head.appendChild(link);
     });
 
-    // Preload critical fonts with better caching
-    const fontLink = document.createElement('link');
-    fontLink.rel = 'preload';
-    fontLink.as = 'font';
-    fontLink.type = 'font/woff2';
-    fontLink.href = 'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2';
-    fontLink.crossOrigin = 'anonymous';
-    document.head.appendChild(fontLink);
+    // Defer non-critical resources
+    preloadWhenIdle(() => {
+      // Non-critical images
+      const nonCriticalImages = [
+        { src: '/b4.svg' },
+        { src: '/b5.svg' },
+      ];
 
-    // Preload critical JavaScript chunks
-    const modulePreloadLink = document.createElement('link');
-    modulePreloadLink.rel = 'modulepreload';
-    modulePreloadLink.href = '/_next/static/chunks/vendor.js';
-    document.head.appendChild(modulePreloadLink);
+      nonCriticalImages.forEach(({ src }) => {
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.as = 'image';
+        link.href = src;
+        document.head.appendChild(link);
+      });
 
-    // Prefetch non-critical resources
-    const prefetchImages = ['/og-image.png'];
-    prefetchImages.forEach(src => {
-      const link = document.createElement('link');
-      link.rel = 'prefetch';
-      link.as = 'image';
-      link.href = src;
-      document.head.appendChild(link);
+      // Preload critical fonts with better caching
+      const fontLink = document.createElement('link');
+      fontLink.rel = 'preload';
+      fontLink.as = 'font';
+      fontLink.type = 'font/woff2';
+      fontLink.href = 'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2';
+      fontLink.crossOrigin = 'anonymous';
+      document.head.appendChild(fontLink);
+
+      // Preload critical JavaScript chunks (only in production)
+      if (process.env.NODE_ENV === 'production') {
+        const chunks = ['vendor', 'three'];
+        chunks.forEach(chunk => {
+          const modulePreloadLink = document.createElement('link');
+          modulePreloadLink.rel = 'modulepreload';
+          modulePreloadLink.href = `/_next/static/chunks/${chunk}.js`;
+          document.head.appendChild(modulePreloadLink);
+        });
+      }
+
+      // Prefetch non-critical resources
+      const prefetchImages = ['/og-image.png'];
+      prefetchImages.forEach(src => {
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.as = 'image';
+        link.href = src;
+        document.head.appendChild(link);
+      });
     });
   }, []);
 

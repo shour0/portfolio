@@ -1,10 +1,12 @@
 'use client'
 
-import { cn } from "@/lib/utils"; 
+import { cn } from "@/lib/utils";
 import { BackgroundGradientAnimation } from "./GradientBg";
-import { GlobeDemo } from "./GridGlobe";
+import { lazy, Suspense, useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import Lottie from "react-lottie";
-import { useState } from "react";
+
+const GlobeDemo = lazy(() => import("./GridGlobe").then(m => ({ default: m.GlobeDemo })));
 import animationData from "@/data/confetti.json"
 import MagicButton from "./MagicButton";
 import { IoCopyOutline } from "react-icons/io5";
@@ -72,18 +74,20 @@ export const BentoGridItem = ({
       <div className={`${id === 6 && 'flex justify-center'} h-full`}>
         <div className="w-full h-full absolute">
           {img && (
-            <img
+            <Image
               src={img}
               alt={img}
+              fill
               className={cn(imgClassName, 'object-cover object-center')}
             />
           )}
         </div>
         <div className={`absolute right-0 -bottom-5 ${id === 5 && 'w-full opacity-90'}`}>
           {spareImg && (
-            <img
+            <Image
               src={spareImg}
               alt={spareImg}
+              fill
               className={cn(imgClassName, 'object-cover object-center w-full h-full')}
             />
           )}
@@ -91,7 +95,7 @@ export const BentoGridItem = ({
 
         {id === 6 && (
           <BackgroundGradientAnimation>
-          
+
           </BackgroundGradientAnimation>
         )}
 
@@ -107,7 +111,7 @@ export const BentoGridItem = ({
             {title}
           </div>
 
-          {id === 2 && <GlobeDemo />}
+          {id === 2 && <LazyGlobe />}
 
           {id === 3 && (
             <div className="flex gap-1 lg:gap-5 w-fit absolute -right-1 ">
@@ -132,7 +136,7 @@ export const BentoGridItem = ({
               <div className="absolute -bottom-5 right-0">
                 <Lottie
                   options={{
-                    loop: copied,    
+                    loop: copied,
                     autoplay: copied, animationData,
                     rendererSettings: {
                       preserveAspectRatio: 'xMidYMid slice'
@@ -144,16 +148,61 @@ export const BentoGridItem = ({
               </div>
 
               <MagicButton
-              title={copied ? 'Email copied' : 'Copy my email'}
-              icon={<IoCopyOutline />}
-              position="left"
-              otherClasses="!bg-[#161a31]"
-              handleClick={handleCopy}
+                title={copied ? 'Email copied' : 'Copy my email'}
+                icon={<IoCopyOutline />}
+                position="left"
+                otherClasses="!bg-[#161a31]"
+                handleClick={handleCopy}
               />
             </div>
           )}
         </div>
       </div>
+    </div>
+  );
+};
+
+// Lazy Globe component with Intersection Observer
+const LazyGlobe = () => {
+  const [shouldLoad, setShouldLoad] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      {
+        rootMargin: '100px', // Start loading 100px before it comes into view
+        threshold: 0.1
+      }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="w-full h-full">
+      {shouldLoad ? (
+        <Suspense fallback={
+          <div className="flex justify-center items-center h-full">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple" />
+          </div>
+        }>
+          <GlobeDemo />
+        </Suspense>
+      ) : (
+        <div className="flex justify-center items-center h-full">
+          <div className="text-sm text-gray-400">🌍 Globe loading...</div>
+        </div>
+      )}
     </div>
   );
 };

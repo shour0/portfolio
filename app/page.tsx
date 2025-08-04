@@ -1,8 +1,9 @@
 import { Suspense, lazy } from "react";
 import Hero from "@/components/Hero";
 import Grid from "@/components/Grid";
-import { FloatingNav } from "@/components/ui/FloatingNav";
 import { navItems } from "@/data";
+
+const FloatingNav = lazy(() => import("@/components/ui/FloatingNav").then(m => ({ default: m.FloatingNav })));
 
 // Lazy load heavy components with better chunking and preload hints
 const RecentProject = lazy(() =>
@@ -36,7 +37,9 @@ export default function Home() {
   return (
     <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-clip mx-auto sm:px10 px-5">
       <div className="max-w-[120rem] w-full">
-        <FloatingNav navItems={navItems} />
+        <Suspense fallback={null}>
+          <FloatingNav navItems={navItems} />
+        </Suspense>
         <Hero />
         <Grid />
 

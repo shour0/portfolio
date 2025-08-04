@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 export const InfiniteMovingCards = ({
@@ -89,8 +90,8 @@ export const InfiniteMovingCards = ({
           <li
             className="relative w-[90vw] max-w-full shrink-0 rounded-2xl border border-b-0 border-zinc-200 bg-[linear-gradient(180deg,#fafafa,#f5f5f5)] px-8 py-6 md:w-[60vw] dark:border-zinc-700 dark:bg-[linear-gradient(180deg,#27272a,#18181b)]"
             style={{
-              background:"rgb(4,7,29)",
-              backgroundColor:"linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)"
+              background: "rgb(4,7,29)",
+              backgroundColor: "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)"
             }}
             key={item.name}
           >
@@ -105,18 +106,18 @@ export const InfiniteMovingCards = ({
               <div className="relative z-20 mt-6 flex flex-row items-center">
                 <div className="flex flex-col gap-1">
                   <div className="me-3">
-                    <img src="/profile.svg" alt="profile" />  
+                    <Image src="/profile.svg" alt="profile" width={24} height={24} />
                   </div>
                   <span className="flex flex-col gap-1">
-                   <span className="text-xl leading-[1.6] font-normal text-white dark:text-gray-400">
-                    {item.name}
+                    <span className="text-xl leading-[1.6] font-normal text-white dark:text-gray-400">
+                      {item.name}
+                    </span>
+                    <span className="text-sm leading-[1.6] font-normal text-white-200 dark:text-gray-400">
+                      {item.title}
+                    </span>
                   </span>
-                  <span className="text-sm leading-[1.6] font-normal text-white-200 dark:text-gray-400">
-                    {item.title}
-                  </span>
-                </span>
                 </div>
-           
+
               </div>
             </blockquote>
           </li>

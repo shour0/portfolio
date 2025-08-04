@@ -5,17 +5,14 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "analyze": "ANALYZE=true next build",
-    "build:analyze": "npm run build && npm run analyze",
     "start": "next start",
-    "lint": "next lint",
-    "perf": "next build && next start"
+    "lint": "next lint"
   },
   "dependencies": {
     "@radix-ui/react-hover-card": "^1.1.14",
     "@react-three/drei": "^10.1.2",
     "@react-three/fiber": "^9.1.2",
-    "@sentry/nextjs": "^9.29.0",
+
     "@tsparticles/engine": "^3.8.1",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.8.1",
