@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     siteName: "Charbel's Portfolio",
     images: [
       {
-        url: '/og-image.png',
+        url: '/favicon.ico',
         width: 1026,
         height: 1200,
         alt: "Charbel's Portfolio - Full Stack Developer",
