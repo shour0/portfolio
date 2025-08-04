@@ -15,11 +15,50 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizePackageImports: ['@react-three/fiber', '@react-three/drei', 'motion', '@tsparticles/react'],
+    optimizeCss: true,
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   poweredByHeader: false,
+  // Enable compression
+  compress: true,
+  // Optimize chunks
+  webpack: (config, { dev, isServer }) => {
+    if (!dev && !isServer) {
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        cacheGroups: {
+          default: false,
+          vendors: false,
+          // Vendor chunk
+          vendor: {
+            name: 'vendor',
+            chunks: 'all',
+            test: /node_modules/,
+            priority: 20,
+          },
+          // Three.js specific chunk
+          three: {
+            name: 'three',
+            chunks: 'all',
+            test: /node_modules\/(three|@react-three)/,
+            priority: 30,
+          },
+          // Common chunk
+          common: {
+            name: 'common',
+            minChunks: 2,
+            chunks: 'all',
+            priority: 10,
+            reuseExistingChunk: true,
+            enforce: true,
+          },
+        },
+      };
+    }
+    return config;
+  },
 };
 
 export default withBundleAnalyzer(withSentryConfig(nextConfig, {

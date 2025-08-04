@@ -151,8 +151,8 @@ export function OptimizedGlobe({ globeConfig, data }: WorldProps) {
 
     globeRef.current
       .hexPolygonsData(countries.features)
-      .hexPolygonResolution(2) // Reduced from 3
-      .hexPolygonMargin(0.7)
+      .hexPolygonResolution(1) // Further reduced for performance
+      .hexPolygonMargin(0.8)
       .showAtmosphere(defaultProps.showAtmosphere)
       .atmosphereColor(defaultProps.atmosphereColor)
       .atmosphereAltitude(defaultProps.atmosphereAltitude)
@@ -189,32 +189,44 @@ export function OptimizedGlobe({ globeConfig, data }: WorldProps) {
       );
   }, [isInitialized, processedData, defaultProps]);
 
-  // Optimized rings animation with reduced frequency
+  // Optimized rings animation with reduced frequency and RAF
   useEffect(() => {
     if (!globeRef.current || !isInitialized || !processedData.arcs.length) return;
 
-    const interval = setInterval(() => {
-      if (!globeRef.current) return;
+    let animationId: number;
+    let lastTime = 0;
+    const ANIMATION_INTERVAL = 4000; // Increased interval
 
-      const newNumbersOfRings = genRandomNumbers(
-        0,
-        processedData.arcs.length,
-        Math.floor((processedData.arcs.length * 2) / 5), // Reduced from 4/5
-      );
+    const animate = (currentTime: number) => {
+      if (currentTime - lastTime >= ANIMATION_INTERVAL) {
+        if (!globeRef.current) return;
 
-      const ringsData = processedData.arcs
-        .filter((d, i) => newNumbersOfRings.includes(i))
-        .map((d) => ({
-          lat: d.startLat,
-          lng: d.startLng,
-          color: d.color,
-        }));
+        const newNumbersOfRings = genRandomNumbers(
+          0,
+          processedData.arcs.length,
+          Math.floor((processedData.arcs.length * 1) / 5), // Further reduced
+        );
 
-      globeRef.current.ringsData(ringsData);
-    }, 3000); // Increased from 2000ms
+        const ringsData = processedData.arcs
+          .filter((d, i) => newNumbersOfRings.includes(i))
+          .map((d) => ({
+            lat: d.startLat,
+            lng: d.startLng,
+            color: d.color,
+          }));
+
+        globeRef.current.ringsData(ringsData);
+        lastTime = currentTime;
+      }
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animationId = requestAnimationFrame(animate);
 
     return () => {
-      clearInterval(interval);
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
     };
   }, [isInitialized, processedData.arcs]);
 
@@ -225,9 +237,21 @@ export function WebGLRendererConfig() {
   const { gl, size } = useThree();
 
   useEffect(() => {
-    gl.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Cap pixel ratio
+    // Performance optimizations
+    gl.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); // Further reduced pixel ratio
     gl.setSize(size.width, size.height);
     gl.setClearColor(0xffaaff, 0);
+
+    // Additional performance settings
+    gl.shadowMap.enabled = false;
+
+    // These properties are set during context creation, not runtime
+    // gl.powerPreference and gl.antialias are read-only
+
+    // Enable frustum culling (this is a Three.js renderer property)
+    if ('frustumCulled' in gl) {
+      (gl as any).frustumCulled = true;
+    }
   }, [gl, size]);
 
   return null;
@@ -244,23 +268,39 @@ export function OptimizedWorld(props: WorldProps) {
   const camera = useMemo(() => new PerspectiveCamera(50, aspect, 180, 1800), []);
 
   return (
-    <Canvas scene={scene} camera={camera} gl={{ antialias: false, alpha: false }}>
+    <Canvas
+      scene={scene}
+      camera={camera}
+      gl={{
+        antialias: false,
+        alpha: false,
+        powerPreference: "high-performance" as WebGLPowerPreference,
+        stencil: false,
+        depth: false,
+        logarithmicDepthBuffer: false,
+      }}
+      frameloop="demand" // Only render when needed
+      dpr={[1, 1.5] as [number, number]} // Limit device pixel ratio
+    >
       <WebGLRendererConfig />
-      <ambientLight color={globeConfig.ambientLight} intensity={0.4} />
+      <ambientLight color={globeConfig.ambientLight} intensity={0.3} />
       <directionalLight
         color={globeConfig.directionalLeftLight}
         position={new Vector3(-400, 100, 400)}
-        intensity={0.6}
+        intensity={0.5}
+        castShadow={false}
       />
       <directionalLight
         color={globeConfig.directionalTopLight}
         position={new Vector3(-200, 500, 200)}
-        intensity={0.4}
+        intensity={0.3}
+        castShadow={false}
       />
       <pointLight
         color={globeConfig.pointLight}
         position={new Vector3(-200, 500, 200)}
-        intensity={0.6}
+        intensity={0.5}
+        castShadow={false}
       />
       <OptimizedGlobe {...props} />
       <OrbitControls
@@ -268,10 +308,11 @@ export function OptimizedWorld(props: WorldProps) {
         enableZoom={false}
         minDistance={cameraZ}
         maxDistance={cameraZ}
-        autoRotateSpeed={0.5} // Reduced from 1
+        autoRotateSpeed={0.3} // Further reduced
         autoRotate={true}
         minPolarAngle={Math.PI / 3.5}
         maxPolarAngle={Math.PI - Math.PI / 3}
+        enableDamping={false} // Disable for better performance
       />
     </Canvas>
   );

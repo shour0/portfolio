@@ -3,11 +3,14 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./provider";
 import PreloadResources from "@/components/PreloadResources";
+import PerformanceMonitor from "@/components/PerformanceMonitor";
 
 const inter = Inter({
   subsets: ["latin"],
   display: 'swap',
   preload: true,
+  variable: '--font-inter',
+  fallback: ['system-ui', 'arial'],
 })
 
 export const metadata: Metadata = {
@@ -76,11 +79,16 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="//api.microlink.io" />
+        <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
       </head>
       <body suppressHydrationWarning
         className={`${inter.className}`}
       >
         <PreloadResources />
+        <PerformanceMonitor />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
