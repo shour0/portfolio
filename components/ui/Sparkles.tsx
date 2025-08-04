@@ -32,11 +32,16 @@ export const SparklesCore = (props: ParticlesProps) => {
   } = props;
   const [init, setInit] = useState(false);
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => {
-      setInit(true);
-    });
+    // Delay initialization to improve initial load
+    const timer = setTimeout(() => {
+      initParticlesEngine(async (engine) => {
+        await loadSlim(engine);
+      }).then(() => {
+        setInit(true);
+      });
+    }, 1000);
+
+    return () => clearTimeout(timer);
   }, []);
   const controls = useAnimation();
 
@@ -70,7 +75,7 @@ export const SparklesCore = (props: ParticlesProps) => {
               zIndex: 1,
             },
 
-            fpsLimit: 60,
+            fpsLimit: 30,
             interactivity: {
               events: {
                 onClick: {
@@ -231,7 +236,7 @@ export const SparklesCore = (props: ParticlesProps) => {
                   mode: "delete",
                   value: 0,
                 },
-                value: particleDensity || 50,
+                value: particleDensity || 20,
               },
               opacity: {
                 value: {

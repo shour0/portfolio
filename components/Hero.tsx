@@ -21,10 +21,10 @@ const Hero = () => {
           background="transparent"
           minSize={0.4}
           maxSize={1.0}
-          particleDensity={30}
+          particleDensity={15}
           className="w-full h-full"
           particleColor="#FFFFFF"
-          speed={2}
+          speed={1}
         />
         <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black-100 bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
 

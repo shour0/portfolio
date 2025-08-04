@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./provider";
+import PreloadResources from "@/components/PreloadResources";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -77,8 +78,9 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body suppressHydrationWarning
-        className={`${inter}`}
+        className={`${inter.className}`}
       >
+        <PreloadResources />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

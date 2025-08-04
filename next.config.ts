@@ -14,11 +14,12 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60,
   },
   experimental: {
-    optimizePackageImports: ['@react-three/fiber', '@react-three/drei', 'motion'],
+    optimizePackageImports: ['@react-three/fiber', '@react-three/drei', 'motion', '@tsparticles/react'],
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
+  poweredByHeader: false,
 };
 
 export default withBundleAnalyzer(withSentryConfig(nextConfig, {

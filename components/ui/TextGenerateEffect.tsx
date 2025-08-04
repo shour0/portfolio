@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import { motion, stagger, useAnimate } from "framer-motion";
+import { motion, stagger, useAnimate } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export const TextGenerateEffect = ({
@@ -20,11 +20,11 @@ export const TextGenerateEffect = ({
           opacity: 1,
         },
         {
-          duration: 1.5,
-          delay: stagger(0.1),
+          duration: 1,
+          delay: stagger(0.08),
         }
       );
-    }, 100);
+    }, 200);
 
     return () => clearTimeout(timer);
   }, [animate]);

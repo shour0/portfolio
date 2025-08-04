@@ -4,17 +4,27 @@ import Grid from "@/components/Grid";
 import { FloatingNav } from "@/components/ui/FloatingNav";
 import { navItems } from "@/data";
 
-// Lazy load heavy components
-const RecentProject = lazy(() => import("@/components/RecentProject"));
-const Experience = lazy(() => import("@/components/Experience"));
-const Approach = lazy(() => import("@/components/Approach"));
-const Journey = lazy(() => import("@/components/Journey"));
-const Footer = lazy(() => import("@/components/Footer"));
+// Lazy load heavy components with better chunking
+const RecentProject = lazy(() =>
+  import("@/components/RecentProject").then(module => ({ default: module.default }))
+);
+const Experience = lazy(() =>
+  import("@/components/Experience").then(module => ({ default: module.default }))
+);
+const Approach = lazy(() =>
+  import("@/components/Approach").then(module => ({ default: module.default }))
+);
+const Journey = lazy(() =>
+  import("@/components/Journey").then(module => ({ default: module.default }))
+);
+const Footer = lazy(() =>
+  import("@/components/Footer").then(module => ({ default: module.default }))
+);
 
-// Loading component
+// Optimized loading component
 const ComponentLoader = () => (
   <div className="flex justify-center items-center py-20">
-    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple"></div>
+    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple" style={{ willChange: 'transform' }}></div>
   </div>
 );
 

@@ -6,8 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "analyze": "ANALYZE=true next build",
+    "build:analyze": "npm run build && npm run analyze",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "perf": "next build && next start"
   },
   "dependencies": {
     "@radix-ui/react-hover-card": "^1.1.14",
