@@ -3,13 +3,14 @@ import { Spotlight } from './ui/Spotlight'
 import MagicButton from './ui/MagicButton'
 import { FaLocationArrow } from 'react-icons/fa'
 import { SparklesCore } from './ui/Sparkles'
+import Image from 'next/image'
 
 const Hero = () => {
   return (
-    <div className='pb-20 pt-10 md:pt-20'>
+    <div className='pb-20'>
 
       <div>
-        <Spotlight className='-top-40 -left-10 md:-left-32 md:-top-20 h-screen' fill='white' />
+        <Spotlight className='-top-10 -left-10 md:-left-32 md:-top-20 h-screen' fill='white' />
         <Spotlight className='-top-10 left-full h-[80vh] w-[50vw]' fill='purple' />
         <Spotlight className='top-28 left-80 h-[80vh] w-[50vw]' fill='blue' />
       </div>
@@ -31,6 +32,13 @@ const Hero = () => {
 
       <div className='flex justify-center relative my-20 md:my-48 z-10'>
         <div className='max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center'>
+          <Image
+            src="/favicon.ico"
+            alt='Logo'
+            width={40}
+            height={50}
+            className='mb-10'
+          />
           <h2 className='uppercase tracking-widest text-ts text-center text-blue-100 max-w-80'>
             Dynamic Web Magic with Next.js
           </h2>
