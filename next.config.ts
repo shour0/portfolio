@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   productionBrowserSourceMaps: true,
+  generateBuildId: async () => {
+    return 'build-' + Date.now()
+  },
   images: {
     domains: [
       "api.microlink.io", // Microlink Image Preview
@@ -18,23 +21,32 @@ const nextConfig: NextConfig = {
   },
   poweredByHeader: false,
   compress: true,
-  webpack: (config, { dev }) => {
-    if (!dev) {
-      // Optimize for production builds
-      config.optimization.splitChunks = {
-        chunks: 'all',
-        cacheGroups: {
-          motion: {
-            name: 'motion',
-            test: /[\\/]node_modules[\\/](motion|framer-motion)[\\/]/,
-            priority: 30,
-            chunks: 'async',
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
           },
-        },
-      };
-    }
-    return config;
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'origin-when-cross-origin',
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=31536000; includeSubDomains',
+          },
+        ],
+      },
+    ];
   },
+
 };
 
 export default nextConfig;

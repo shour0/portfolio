@@ -41,10 +41,11 @@ export const metadata: Metadata = {
     siteName: "Charbel's Portfolio",
     images: [
       {
-        url: '/favicon.ico',
-        width: 1026,
-        height: 1200,
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
         alt: "Charbel's Portfolio - Full Stack Developer",
+        type: 'image/png',
       },
     ],
   },
