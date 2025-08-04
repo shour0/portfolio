@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  productionBrowserSourceMaps: true,
   images: {
     domains: [
       "api.microlink.io", // Microlink Image Preview

@@ -5,22 +5,12 @@ import { navItems } from "@/data";
 
 const FloatingNav = lazy(() => import("@/components/ui/FloatingNav").then(m => ({ default: m.FloatingNav })));
 
-// Lazy load heavy components with better chunking and preload hints
-const RecentProject = lazy(() =>
-  import(/* webpackChunkName: "recent-project" */ "@/components/RecentProject")
-);
-const Experience = lazy(() =>
-  import(/* webpackChunkName: "experience" */ "@/components/Experience")
-);
-const Approach = lazy(() =>
-  import(/* webpackChunkName: "approach" */ "@/components/Approach")
-);
-const Journey = lazy(() =>
-  import(/* webpackChunkName: "journey" */ "@/components/Journey")
-);
-const Footer = lazy(() =>
-  import(/* webpackChunkName: "footer" */ "@/components/Footer")
-);
+// Lazy load heavy components
+const RecentProject = lazy(() => import("@/components/RecentProject"));
+const Experience = lazy(() => import("@/components/Experience"));
+const Approach = lazy(() => import("@/components/Approach"));
+const Journey = lazy(() => import("@/components/Journey"));
+const Footer = lazy(() => import("@/components/Footer"));
 
 // Optimized loading component with reduced layout shift
 const ComponentLoader = () => (
