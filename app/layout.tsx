@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./provider";
 import PreloadResources from "@/components/PreloadResources";
-import PerformanceMonitor from "@/components/PerformanceMonitor";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -88,7 +87,6 @@ export default function RootLayout({
         className={`${inter.className}`}
       >
         <PreloadResources />
-        <PerformanceMonitor />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
